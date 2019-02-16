@@ -23,14 +23,24 @@
     .state('categories', {
       url: '/categories',
       templateUrl: 'src/menuapp/templates/category-main.template.html',
-      controller: 'MenuCategoriesController as mainlist'
+      controller: 'MenuCategoriesController as mainlist',
+      resolve: {
+        categories: ['MenuDataService', function(MenuDataService) {
+          return MenuDataService.getAllCategories();
+        }]
+      }
     })
 
     // Categories Items List
     .state('category-items', {
       url: '/category-items/{categoryShortName}',
       templateUrl: 'src/menuapp/templates/items.template.html',
-      controller: 'MenuItemsController as itemlist'
+      controller: 'MenuItemsController as itemlist',
+      resolve: {
+        items: ['$stateParams', 'MenuDataService', function($stateParams, MenuDataService) {
+          return MenuDataService.getItemsForCategory($stateParams.categoryShortName);
+        }]
+      }
     });
 
   }

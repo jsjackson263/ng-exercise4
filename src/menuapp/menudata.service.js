@@ -14,8 +14,8 @@
       var response = $http({
         method: 'GET',
         url: ApiBasePath + '/categories.json'
-        // url: ApiBasePath + '/menu_items.json?category=' + 'L'
       }).then(function(response) {
+        // console.log("MenuDataService - getAllCategories - response.data: ", response.data);
         return response.data;
       }).catch(function(error) {
         console.log("service.getAllCategories - Error in service call: ", error);
@@ -29,14 +29,14 @@
         method: 'GET',
         url: ApiBasePath + '/menu_items.json?category=' + categoryShortName
       }).then(function(response) {
-        console.log("MenuDataService - getItemsForCategory (" + categoryShortName + ") - response.data: ", response.data);
+        // console.log("MenuDataService - getItemsForCategory (" + categoryShortName + ") - response.data: ", response.data);
         return response.data;
 
       }).catch(function(error) {
         console.log("service.getItemsForCategory (" + categoryShortName + ") - Error in service call: ", error);
       });
 
-      response
+      return response
 
     };
 

@@ -4,22 +4,13 @@
   angular.module('DataModule')
   .controller('MenuItemsController', MenuItemsController);
 
-  MenuItemsController.$inject = ['MenuDataService'];
-  function MenuItemsController(MenuDataService) {
+  MenuItemsController.$inject = ['items'];
+  function MenuItemsController(items) {
 
+    console.log("MenuItemsController - items: ", items);
     var itemlist = this;
-    itemlist.items = [];
-
-    itemlist.getItemsForCategory = function(categoryShortName) {
-      MenuDataService.getItemsForCategory(categoryShortName)
-      .then(function(result) {
-        itemlist.items = result;
-          console.log("MenuCategoriesController - itemlist.category: ", itemlist.category);
-      }).catch(function(error) {
-          console.log("MenuCategoriesController - getItemsForCategory-  error: ", error);
-      });
-
-    };
+    itemlist.items = items.menu_items;
+    itemlist.categoryName = items.category.name;
 
   }
 })();

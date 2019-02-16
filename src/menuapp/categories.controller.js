@@ -4,21 +4,11 @@
   angular.module('DataModule')
   .controller('MenuCategoriesController', MenuCategoriesController);
 
-  MenuCategoriesController.$inject = ['MenuDataService'];
-  function MenuCategoriesController(MenuDataService) {
+  MenuCategoriesController.$inject = ['categories'];
+  function MenuCategoriesController(categories) {
 
     var mainlist = this;
-    mainlist.categories = [];
-
-    mainlist.$onInit = function() {
-      MenuDataService.getAllCategories()
-      .then(function(result) {
-        mainlist.categories = result;
-        console.log("MenuCategoriesController - mainlist.categories: ", mainlist.categories);
-      }).catch(function(error) {
-          console.log("MenuCategoriesController - getAllCategories - error: ", error);
-      });
-    };
-
+    mainlist.categories = categories;
+    
   }
 })();
