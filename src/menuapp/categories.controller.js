@@ -2,10 +2,10 @@
   'user strict';
 
   angular.module('DataModule')
-  .controller('MainMenuAppController', MainMenuAppController);
+  .controller('MenuCategoriesController', MenuCategoriesController);
 
-  MainMenuAppController.$inject = ['MenuDataService'];
-  function MainMenuAppController(MenuDataService) {
+  MenuCategoriesController.$inject = ['MenuDataService'];
+  function MenuCategoriesController(MenuDataService) {
 
     var mainlist = this;
     mainlist.categories = [];
@@ -14,12 +14,11 @@
       MenuDataService.getAllCategories()
       .then(function(result) {
         mainlist.categories = result;
-        console.log("MainMenuAppController - mainlist.categories: ", mainlist.categories);
+        console.log("MenuCategoriesController - mainlist.categories: ", mainlist.categories);
       }).catch(function(error) {
-          console.log("MainMenuAppController - error: ", error);
+          console.log("MenuCategoriesController - getAllCategories - error: ", error);
       });
     };
-
 
   }
 })();

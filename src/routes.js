@@ -19,11 +19,18 @@
       templateUrl: 'src/menuapp/templates/home.template.html'
     })
 
-    // Menu Categories
+    // Menu Categories List
     .state('categories', {
       url: '/categories',
       templateUrl: 'src/menuapp/templates/category-main.template.html',
-      controller: 'MainMenuAppController as mainlist'
+      controller: 'MenuCategoriesController as mainlist'
+    })
+
+    // Categories Items List
+    .state('category-items', {
+      url: '/category-items/{categoryShortName}',
+      templateUrl: 'src/menuapp/templates/items.template.html',
+      controller: 'MenuItemsController as itemlist'
     });
 
   }
